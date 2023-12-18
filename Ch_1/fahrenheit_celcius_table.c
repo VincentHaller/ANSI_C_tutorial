@@ -18,4 +18,5 @@ int main(){
         fahr = celcius * (9.0/5.0) + 32.0;
         printf("%3.0f: %7.1f\n", celcius, fahr);
     }
+    return 0;
 }
