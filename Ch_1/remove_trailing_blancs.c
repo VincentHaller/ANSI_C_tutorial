@@ -32,10 +32,11 @@ int get_line(char s[], int lim)
 {
   int c, i;
 
-  for (i = 0; i < lim-1 && (c = getchar()) != EOF && c != '\n'; i++ )
+  for ( i = 0; i < lim-1 && (c = getchar()) != EOF && c != '\n'; i++ )
     s[i] = c;
 
-  if ( c == '\n' ){
+  if ( c == '\n' )
+	{
     s[i] = c;
     i++;
   }
@@ -47,8 +48,7 @@ int get_line(char s[], int lim)
 
 int remove_trailing_whitespaces(char s[], int len) 
 {
-	while (len > 0 
-		&& ( s[len-1] == ' ' || s[len-1] == '\t' || s[len-1] == '\n') ) 
+	while (len > 0 && (s[len-1] == ' ' || s[len-1] == '\t' || s[len-1] == '\n') ) 
 	{
 		s[len - 1] = '\0';
 		--len;

@@ -1,2 +1,8 @@
-*.out
+# settings
 .vscode
+
+# executables
+*.out
+
+# test files
+random_test.c
