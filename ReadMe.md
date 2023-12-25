@@ -5,6 +5,7 @@ Tutorial going through the K&R ANCI C book exercises.
 - signed char max = 127, min = -128. 
 - print unsiged long with '%lu'.
 - going past integer limit return 0.
+- -1L < 1U, but -1L > 1UL; due to conversion rules.
 
 21/12/23
 - if function takes array as input, this must be specified in the function prototype.
