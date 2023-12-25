@@ -9,8 +9,8 @@ exchange '\t' for the appropriate number of spaces.
 #define COLWIDTH 4
 
 // function prototypes
-int get_tab_line(char s[]);
-void replace_tab_with_space(char spaceline[], char tabline[], int len);
+int get_tab_line( char s[] );
+void replace_tab_with_space( char spaceline[], char tabline[], int len );
 
 // main 
 int main()
@@ -29,7 +29,7 @@ int main()
 }
 
 // functions
-int get_tab_line(char s[])
+int get_tab_line( char s[] )
 {
 	int c, i;
 
@@ -47,7 +47,7 @@ int get_tab_line(char s[])
 	return i;
 }
 
-void replace_tab_with_space(char spaceline[], char tabline[], int len)
+void replace_tab_with_space( char spaceline[], char tabline[], int len )
 {
 	int i, i_t, i_s;
 
