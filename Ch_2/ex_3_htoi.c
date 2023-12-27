@@ -11,15 +11,20 @@ In this file we create a hexidecimal to digit converter.
 int return_digit(char c);
 char make_lower(char c);
 int return_higher_hex(char c);
-int read_hex(int s[]);
-int htoi(int s[]);
+int htoi(char s[], int len);
+int get_line(char s[], int lim);
+int power(int, int);
 
 // main
 int main()
 {
-	int c;
-	int s[MAXLINE];  
+	int i, c, len;
+	char line[MAXLINE];  
 
+	while ( (len = get_line(line, MAXLINE)) > 1 )
+	{
+		printf("%d\n", htoi(line, len));
+	}
 }
 // functions
 int return_digit(char c)
@@ -43,31 +48,53 @@ int return_higher_hex(char c)
 	return output;	
 }
 
-int read_hex(int s[])
+int get_line(char s[], int lim) 
 {
-	int i;
-	char c;
+  int c, i;
 
-	for ( i = 0; i < MAXLINE - 1 && (c=getchar()) != '\n' && c != EOF; ++i )
+  for ( i = 0; i < lim-1 && (c = getchar()) != EOF && c != '\n'; i++ )
+    s[i] = c;
+
+  if ( c == '\n' )
 	{
-		if ( c >= 'A' && c <= 'F' )
-			c = make_lower(c);
+    s[i] = c;
+    i++;
+  }
 
-		if ( c >= '0' && c <= '9' )
-		{
-			s[i] = return_digit(c);
-		}
-		else if ( c >= 'a' && c <= 'f' )
-		{
-			s[i] = return_higher_hex(c);
-		}
-	}
+  s[i] = '\0';
+
+  return i;
 }
 
-int htoi(int s[])
+int htoi(char s[], int len)
 {
-
+	int i, c, output, pos;
+	output = 0;
+	for ( 
+		i = len-1, pos = 0;
+		i >= 0 && s[i] != 'X' && s[i] != 'x' ; 
+		i-- , pos++
+		)
+		{
+			c = s[i];
+			if ( c >= 'A' && c <= 'F')
+				c = make_lower(c);
+			if ( c >= 'a' && c <= 'f')
+				c = return_higher_hex(c);
+			else if (c >= '0' && c <='9')
+				c = return_digit(c);
+			output += c*power(16, pos);
+		}
+	return output;
 }
 
+int power(int val, int pwr){
+  int i, output;
+  output = 1;
 
+  for ( i = 0; i < pwr; i++ )
+    output *= val;
+  
+	return output;
+}
 
