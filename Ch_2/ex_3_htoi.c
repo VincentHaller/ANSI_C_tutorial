@@ -21,7 +21,7 @@ int main()
 	int i, c, len;
 	char line[MAXLINE];  
 
-	while ( (len = get_line(line, MAXLINE)) > 1 )
+	while ( (len = get_line(line, MAXLINE)) >= 1 )
 	{
 		printf("%d\n", htoi(line, len));
 	}
@@ -44,7 +44,7 @@ char make_lower(char upper)
 int return_higher_hex(char c)
 {
 	int output; 
-	output = c - 'a' + 11;
+	output = c - 'a' + 10;
 	return output;	
 }
 
@@ -71,7 +71,7 @@ int htoi(char s[], int len)
 	int i, c, output, pos;
 	output = 0;
 	for ( 
-		i = len-1, pos = 0;
+		i = len-2, pos = 0;
 		i >= 0 && s[i] != 'X' && s[i] != 'x' ; 
 		i-- , pos++
 		)
