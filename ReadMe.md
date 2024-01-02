@@ -1,5 +1,8 @@
 Tutorial going through the K&R ANCI C book exercises. 
 
+02/01/24
+- rember when you save '\n' in a string.
+
 25/12/23 
 - start chapter 2.
 - signed char max = 127, min = -128. 
