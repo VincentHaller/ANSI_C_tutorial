@@ -9,7 +9,7 @@ In this file we create a hexidecimal to digit converter.
 
 // function prototypes
 int return_digit(char c);
-char make_lower(char c);
+void make_lower(char *c);
 int return_higher_hex(char c);
 int htoi(char s[], int len);
 int get_line(char s[], int lim);
@@ -23,9 +23,10 @@ int main()
 
 	while ( (len = get_line(line, MAXLINE)) > 1 )
 	{
-		printf("%d", htoi(line, len));
+		printf("%d\n", htoi(line, len));
 	}
 }
+
 // functions
 int return_digit(char c)
 {
@@ -34,17 +35,15 @@ int return_digit(char c)
 	return output;
 }
 
-char make_lower(char upper)
+void make_lower(char *c)
 {
-	char lower;
-	lower = upper - 'A' + 'a';
-	return lower;
+	*c -= 'A' + 'a';
 }
 
 int return_higher_hex(char c)
 {
 	int output; 
-	output = c - 'a' + 11;
+	output = c - 'a' + 10;
 	return output;	
 }
 
@@ -68,22 +67,26 @@ int get_line(char s[], int lim)
 
 int htoi(char s[], int len)
 {
-	int i, c, output, pos;
+	int i, k, output, pos;
+	char c;	
 	output = 0;
 	for ( 
-		i = len-1, pos = 0;
+		i = len-2, pos = 0;
 		i >= 0 && s[i] != 'X' && s[i] != 'x' ; 
 		i-- , pos++
 		)
 		{
 			c = s[i];
+			
 			if ( c >= 'A' && c <= 'F')
-				c = make_lower(c);
+				make_lower(&c);
+				
 			if ( c >= 'a' && c <= 'f')
-				c = return_higher_hex(c);
+				k = return_higher_hex(c);
 			else if (c >= '0' && c <='9')
-				c = return_digit(c);
-			output += c*power(16, pos);
+				k = return_digit(c);
+
+			output += k*power(16, pos);
 		}
 	return output;
 }
