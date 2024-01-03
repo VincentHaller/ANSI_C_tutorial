@@ -29,9 +29,8 @@ int main()
 	char b[CHAR_BIT+1];
 	b[8] = '\0';
 	unsigned char c;
-	c = 0;
+	c = 255;
 	ctob(c, b);
-
 	printf("%s\n", b);
 	return 0;
 }
@@ -52,21 +51,21 @@ int main()
 void ctob( unsigned char c, char b[] )
 {
 	unsigned char bit, pow;
-	int i;
+	char i;
 		
 	b[8] = '\0';
 
-	for ( i = CHAR_BIT - 1; i >= 0; i-- )
+	for ( i = 0; i < CHAR_BIT; i++)
 	{
-		pow = power(2, i);
+		pow = power(2, CHAR_BIT -1 -i);
 		bit = c/pow;
 		if (bit == 1)
 		{
-			b[7-i] = '1';
+			b[i] = '1';
 			c -= pow;
 		}
 		else
-			b[7-i] = '0';
+			b[i] = '0';
 	}
 
 }

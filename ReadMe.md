@@ -1,5 +1,8 @@
 Tutorial going through the K&R ANCI C book exercises. 
 
+03/01/24
+- be careful when using unsigned char in loop -> cannot go less than 0.
+
 02/01/24
 - rember when you save '\n' in a string.
 
