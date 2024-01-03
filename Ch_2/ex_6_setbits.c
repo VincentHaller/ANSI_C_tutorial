@@ -16,10 +16,9 @@ position p set to the rightmost n bits of y, leaving the other bits unchanged.
 // 	unsigned char y // se second set of bits. 
 // 	);
 
-void ctob(
-	unsigned char c,
-	char b[]
-);
+void ctob(unsigned char c, char b[]);
+
+unsigned char btoc(char b[]);
 
 unsigned char power(unsigned char base, unsigned char exponential);
 
@@ -28,10 +27,11 @@ int main()
 {
 	char b[CHAR_BIT+1];
 	b[8] = '\0';
-	unsigned char c;
-	c = 255;
+	unsigned char c, test;
+	c = 69;
 	ctob(c, b);
-	printf("%s\n", b);
+	test = btoc(b);
+	printf("%d\n", test);
 	return 0;
 }
 // functions
@@ -68,6 +68,21 @@ void ctob( unsigned char c, char b[] )
 			b[i] = '0';
 	}
 
+}
+
+unsigned char btoc(char b[])
+{
+	unsigned char output, i, pow;
+	output = 0;
+	
+	for ( i = 0; i < CHAR_BIT; i++ )
+	{
+		pow	= CHAR_BIT - 1 - i;
+		if (b[i] == '1')
+			output += power(2, pow);
+	}
+	
+	return output;
 }
 
 unsigned char power (unsigned char base, unsigned char exponential)
